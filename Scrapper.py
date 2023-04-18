@@ -318,7 +318,7 @@ class YFinanceScrapper():
             csv file of selected dataframe.
 
         '''
-        self.table.to_csv(f'{self.company_code}_{table}.csv')
+        self.table.to_csv(f'/csv_files/{self.company_code}_{table}.csv')
 
     def value_to_num(self,x):
         '''Data manipulation that convert '-' to nan, convert ',' to '',
