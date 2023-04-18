@@ -4,12 +4,12 @@
 
 ### Install Required Library
 
-This module require some library(BeautifulSoup4, Selenium, time, Pandas, and Numpy). 
-1. BeautifulSoup4 is used for parse HTML from Yahoo Finance. This parse process is needed to collect the important information from the HTML file. 
-2. Selenium is used for web crawling. This is needed because some data need document object model from javascript to be generated. And it active when there are interaction with pages.
-3. time is used for delaying in process block code. This is needed because the pages has to be fully loaded before HTML collection process.
-4. Pandas is used to make dataframe
-5. Numpy is used for manipulate data type.
+This module require some library such as BeautifulSoup4, Selenium, time, Pandas, and Numpy.
+<br>1. BeautifulSoup4 is used for parse HTML from Yahoo Finance. This parse process is needed to collect the important information from the HTML file. 
+<br>2. Selenium is used for web crawling. This is needed because some data need document object model from javascript to be generated. And it active when there are interaction with pages.
+<br>3. time is used for delaying in process block code. This is needed because the pages has to be fully loaded before HTML collection process.
+<br>4. Pandas is used to make dataframe
+<br>5. Numpy is used for manipulate data type.
 
 ## Scrape Journey
 
