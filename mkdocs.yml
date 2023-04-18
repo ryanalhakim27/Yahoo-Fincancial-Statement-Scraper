@@ -1,0 +1,19 @@
+site_name: Yahoo Financial Statement Scraper Documentations
+site_url: https://ryanalhakim27.github.io/Yahoo-Fincancial-Statement-Scraper/
+site_description: Scraper module for scrape financial statement data from Yahoo Finance.
+site_author: Mohammad Ryan Alhakim
+
+repo_url: https://github.com/ryanalhakim27/Yahoo-Fincancial-Statement-Scraper/
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings
+  - glightbox
+
+nav:
+  - Welcome to ScraFSY: index.md
+  - How to Use: how to use.md
+  - References: references.md
+

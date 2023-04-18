@@ -21,7 +21,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup as soup
-import requests
 import pandas as pd
 import time as waktu
 import numpy as np
@@ -47,7 +46,8 @@ class YFinanceScrapper():
             cash flow statement data.
         company_code (str): The company code that you want to scrape.
         collect (list): A list that contain all name of features and their value.
-        content (bs4.BeautifulSoup): BeautifulSoup object that contain Json file.
+        content (bs4.BeautifulSoup): BeautifulSoup object that contain Yahoo Finance
+            HTML file in Pythonic idioms.
         features (list): A list that contain name of features those are collected.
         headers (list): A list that contain name of headers in Yahoo Finance
             financial statements table.
@@ -99,7 +99,8 @@ class YFinanceScrapper():
             statement (str): The selected statement that is gonna be scraped.
 
         Returns:
-            content (bs4.BeautifulSoup): BeautifulSoup object that contains Json file.
+            content (bs4.BeautifulSoup): BeautifulSoup object that contain Yahoo Finance 
+                HTML file in Pythonic idioms.
         '''
         try:
             #Initiate web driver
@@ -135,7 +136,8 @@ class YFinanceScrapper():
             >>> collect= bca.parse_data(self.content,'Income Statement')
 
         Args:
-            content (bs4.BeautifulSoup): BS4 object that contain JSON file from Yahoo Finance.
+            content (bs4.BeautifulSoup): BeautifulSoup object that contain Yahoo Finance
+                HTML file in Pythonic idioms.
             statement (str): The selected statement that is gonna be scraped.
 
         Returns:
@@ -347,9 +349,9 @@ class YFinanceScrapper():
         '''Create dataframe that contain selected features from all statements table.
 
         Examples:
-            >>> bca = YFinanceScrapper('BBCA.JK')
-            >>> bca.get_alldata()
-            >>> bca.important_dataframe()
+            >>> goto = YFinanceScrapper('GOTO.JK')
+            >>> goto.get_alldata()
+            >>> goto.important_dataframe()
         
          Args:
             param1 (:obj:`str`, optional): The first parameter. 
@@ -359,40 +361,43 @@ class YFinanceScrapper():
             imp_dataframe (pandas.Dataframe): A pandas Dataframe that contain
                 selected features from each statement.
         '''
-        important_header=['time','company','current_assets','current_liabilities',
-                          'inventories','cash&cashequiv','total_assets',
-                          'total_liabilities','shareholder_equity',
-                          'operating_cashflow','gross_profit',
-                          'operating_income','total_revenue','net_income',
-                          'interest_expense','cost_of_good_sold']
-        int_header=['current_assets','current_liabilities',
-                    'inventories','cash&cashequiv','total_assets',
-                    'total_liabilities','shareholder_equity',
-                    'operating_cashflow','gross_profit',
-                    'operating_income','total_revenue','net_income',
-                    'interest_expense','cost_of_good_sold']
-        df=pd.DataFrame(None, columns=important_header)
-        df['time']=self.income_statement['Time']
-        df['company']=self.income_statement['Company']
-        df['current_assets']=self.balance_sheet['Current Assets']
-        df['current_liabilities']=self.balance_sheet['Current Liabilities']
-        df['inventories']=self.balance_sheet['Inventory']
-        df['cash&cashequiv']=self.balance_sheet['Cash And Cash Equivalents']
-        df['total_assets']=self.balance_sheet['Total Assets']
-        df['total_liabilities']=self.balance_sheet['Total Liabilities Net Minority Interest']
-        df['shareholder_equity']=self.balance_sheet["Stockholders' Equity"]
-        df['operating_cashflow']=self.cash_flow.iloc[:,2]
-        df['gross_profit']=self.income_statement['Gross Profit']
-        df['operating_income']=self.income_statement['Operating Income']
-        df['total_revenue']=self.income_statement['Total Revenue']
-        df['interest_expense']=self.income_statement['Interest Expense']
-        df['net_income']=self.income_statement['Net Income']
-        df['cost_of_good_sold']=self.income_statement['Cost of Revenue']
-        df=df.dropna()
-        df[int_header]=df[int_header].astype(np.int64)
-        self.imp_dataframe = df
-        return self.imp_dataframe
-    
+        try:
+            important_header=['time','company','current_assets','current_liabilities',
+                            'inventories','cash&cashequiv','total_assets',
+                            'total_liabilities','shareholder_equity',
+                            'operating_cashflow','gross_profit',
+                            'operating_income','total_revenue','net_income',
+                            'interest_expense','cost_of_good_sold']
+            int_header=['current_assets','current_liabilities',
+                        'inventories','cash&cashequiv','total_assets',
+                        'total_liabilities','shareholder_equity',
+                        'operating_cashflow','gross_profit',
+                        'operating_income','total_revenue','net_income',
+                        'interest_expense','cost_of_good_sold']
+            df=pd.DataFrame(None, columns=important_header)
+            df['time']=self.income_statement.get('Time')
+            df['company']=self.income_statement.get('Company')
+            df['current_assets']=self.balance_sheet.get('Current Assets')
+            df['current_liabilities']=self.balance_sheet.get('Current Liabilities')
+            df['inventories']=self.balance_sheet.get('Inventory')
+            df['cash&cashequiv']=self.balance_sheet.get('Cash And Cash Equivalents')
+            df['total_assets']=self.balance_sheet.get('Total Assets')
+            df['total_liabilities']=self.balance_sheet.get('Total Liabilities Net Minority Interest')
+            df['shareholder_equity']=self.balance_sheet.get("Stockholders' Equity")
+            df['operating_cashflow']=self.cash_flow.iloc[:,2]
+            df['gross_profit']=self.income_statement.get('Gross Profit')
+            df['operating_income']=self.income_statement.get('Operating Income')
+            df['total_revenue']=self.income_statement.get('Total Revenue')
+            df['interest_expense']=self.income_statement.get('Interest Expense')
+            df['net_income']=self.income_statement.get('Net Income')
+            df['cost_of_good_sold']=self.income_statement.get('Cost of Revenue')
+            df=df.dropna()
+            df[int_header]=df[int_header].astype(np.int64)
+            self.imp_dataframe = df
+            return self.imp_dataframe
+        except(KeyError):
+            print('There are data that unavailable')
+
     def metric_dataframe(self,param1=None):
         '''Create dataframe that contain selected financial metrics
             from important dataframe.
@@ -417,19 +422,19 @@ class YFinanceScrapper():
                           'interest_coverage_ratio','return_on_equity_ratio',
                           'gross_margin_ratio','operating_margin_ratio']
         df=pd.DataFrame(None, columns=metric_header)
-        df['time']=self.imp_dataframe['time']
-        df['company']=self.imp_dataframe['company']
-        df['current_ratio']=self.imp_dataframe['current_assets']/self.dataframe['current_liabilities']
-        df['acidtest_ratio']=(self.imp_dataframe['current_assets']-self.dataframe['inventories'])/self.dataframe['current_liabilities']
-        df['cash_ratio']=self.imp_dataframe['cash&cashequiv']/self.dataframe['current_liabilities']
-        df['operating_cash_flow_ratio']=self.imp_dataframe['operating_cashflow']/self.dataframe['current_liabilities']
-        df['debt_ratio']=self.imp_dataframe['total_liabilities']/self.dataframe['total_assets']
-        df['debt_to_equity_ratio']=self.imp_dataframe['total_liabilities']/self.dataframe['shareholder_equity']
-        df['interest_coverage_ratio']=self.imp_dataframe['operating_income']/self.dataframe['interest_expense']
-        df['gross_margin_ratio']=self.imp_dataframe['gross_profit']/self.dataframe['total_revenue']
-        df['operating_margin_ratio']=self.imp_dataframe['operating_income']/self.dataframe['total_revenue']
-        df['return_on_asset_ratio']=self.imp_dataframe['net_income']/self.dataframe['total_assets']
-        df['return_on_equity_ratio']=self.imp_dataframe['net_income']/self.dataframe['shareholder_equity']
+        df['time']=self.imp_dataframe.get('time')
+        df['company']=self.imp_dataframe.get('company')
+        df['current_ratio']=self.imp_dataframe.get('current_assets')/self.imp_dataframe.get('current_liabilities')
+        df['acidtest_ratio']=(self.imp_dataframe.get('current_assets')-self.imp_dataframe.get('inventories'))/self.imp_dataframe.get('current_liabilities')
+        df['cash_ratio']=self.imp_dataframe.get('cash&cashequiv')/self.imp_dataframe.get('current_liabilities')
+        df['operating_cash_flow_ratio']=self.imp_dataframe.get('operating_cashflow')/self.imp_dataframe.get('current_liabilities')
+        df['debt_ratio']=self.imp_dataframe.get('total_liabilities')/self.imp_dataframe.get('total_assets')
+        df['debt_to_equity_ratio']=self.imp_dataframe.get('total_liabilities')/self.imp_dataframe.get('shareholder_equity')
+        df['interest_coverage_ratio']=self.imp_dataframe.get('operating_income')/self.imp_dataframe.get('interest_expense')
+        df['gross_margin_ratio']=self.imp_dataframe.get('gross_profit')/self.imp_dataframe.get('total_revenue')
+        df['operating_margin_ratio']=self.imp_dataframe.get('operating_income')/self.imp_dataframe.get('total_revenue')
+        df['return_on_asset_ratio']=self.imp_dataframe.get('net_income')/self.imp_dataframe.get('total_assets')
+        df['return_on_equity_ratio']=self.imp_dataframe.get('net_income')/self.imp_dataframe.get('shareholder_equity')
         self.metric = df
         return self.metric
 
