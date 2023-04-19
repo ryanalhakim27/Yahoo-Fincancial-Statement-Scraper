@@ -11,6 +11,12 @@ This module require some library such as BeautifulSoup4, Selenium, time, Pandas,
 <br>4. Pandas is used to make dataframe
 <br>5. Numpy is used for manipulate data type.
 
+### Install Required Library
+Import this module
+<pre>
+    <code>from ScraFSY import YFinanceScrapper </code> 
+</pre>
+
 ## Scrape Journey
 
 ### 1. Instances a Scrape Session Object
