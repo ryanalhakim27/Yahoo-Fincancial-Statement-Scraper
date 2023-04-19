@@ -154,23 +154,47 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-get-dataframe-of-financial-statement">
-    2. Get Dataframe of Financial Statement
+<a class="md-nav__link" href="#2-get-onestate-dataframe">
+    2. Get OneState Dataframe
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-get-dataframe-of-key-features-combination-in-each-statements">
-    3. Get Dataframe of Key Features Combination in each Statements
+<a class="md-nav__link" href="#3-get-keyfeat-dataframe">
+    3. Get KeyFeat Dataframe
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#4-get-dataframe-of-financial-metrics">
-    4. Get Dataframe of Financial Metrics
+<a class="md-nav__link" href="#4-get-metric-dataframe">
+    4. Get Metric Dataframe
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#5-convert-dataframe-to-csv-files">
     5. Convert Dataframe to CSV Files
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#about-the-dataframe">
+    About the Dataframe
+  </a>
+<nav aria-label="About the Dataframe" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onestate-dataframe">
+    OneState Dataframe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#keyfeat-dataframe">
+    KeyFeat Dataframe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#metric-dataframe">
+    Metric Dataframe
   </a>
 </li>
 </ul>
@@ -229,23 +253,47 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-get-dataframe-of-financial-statement">
-    2. Get Dataframe of Financial Statement
+<a class="md-nav__link" href="#2-get-onestate-dataframe">
+    2. Get OneState Dataframe
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-get-dataframe-of-key-features-combination-in-each-statements">
-    3. Get Dataframe of Key Features Combination in each Statements
+<a class="md-nav__link" href="#3-get-keyfeat-dataframe">
+    3. Get KeyFeat Dataframe
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#4-get-dataframe-of-financial-metrics">
-    4. Get Dataframe of Financial Metrics
+<a class="md-nav__link" href="#4-get-metric-dataframe">
+    4. Get Metric Dataframe
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#5-convert-dataframe-to-csv-files">
     5. Convert Dataframe to CSV Files
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#about-the-dataframe">
+    About the Dataframe
+  </a>
+<nav aria-label="About the Dataframe" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onestate-dataframe">
+    OneState Dataframe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#keyfeat-dataframe">
+    KeyFeat Dataframe
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#metric-dataframe">
+    Metric Dataframe
   </a>
 </li>
 </ul>
@@ -281,8 +329,8 @@
     <br/>aali = YFinanceScrapper('AALI.JK) </code> 
 </pre>
 <p>There are 3 session of scrape.</p>
-<h3 id="2-get-dataframe-of-financial-statement">2. Get Dataframe of Financial Statement</h3>
-<p>There are two option in way to getting financial statement dataframe.
+<h3 id="2-get-onestate-dataframe">2. Get OneState Dataframe</h3>
+<p>There are two option in way to getting OneState Dataframe.
 You can get all 3 separated financial statement dataframe in one function using <code>get_alldata()</code> or get one statement dataframe using <code>get_finance_data(statement)</code>.</p>
 <h4>For example:</h4>
 <pre>
@@ -298,8 +346,8 @@ You can get all 3 separated financial statement dataframe in one function using 
     <br/>bca.balance_sheet </code> 
 </pre>
 <p>You will get income statement dataframe in attribute income_statement, balance sheet dataframe in balance_sheet, and cash flow dataframe in cash_flow</p>
-<h3 id="3-get-dataframe-of-key-features-combination-in-each-statements">3. Get Dataframe of Key Features Combination in each Statements</h3>
-<p>After you get financial statement dataframe, you can generated Dataframe of Key Features Combination in each Statements using method <code>important_dataframe()</code>.</p>
+<h3 id="3-get-keyfeat-dataframe">3. Get KeyFeat Dataframe</h3>
+<p>After you get OneState Dataframe, you can generated KeyFeat Dataframe in  using method <code>important_dataframe()</code>.</p>
 <h4>For example:</h4>
 <pre>
     <code>goto=YFinanceScrapper('GOTO.JK)
@@ -312,8 +360,8 @@ You can get all 3 separated financial statement dataframe in one function using 
 <br/>
 <a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="100%" href="../important_dataframe.png"><img alt="Image title" src="../important_dataframe.png"/></a>
 Note: It is not work in Bank financial statements because different format of financial statements.</p>
-<h3 id="4-get-dataframe-of-financial-metrics">4. Get Dataframe of Financial Metrics</h3>
-<p>If your Key Features Dataftame already built, you can make financial metrics dataframe by using method <code>metric_dataframe()</code>.</p>
+<h3 id="4-get-metric-dataframe">4. Get Metric Dataframe</h3>
+<p>If your KeyFeat Dataframe has been already built, you can make Metric Dataframe by using method <code>metric_dataframe()</code>.</p>
 <h4>For example:</h4>
 <pre>
     <code>goto=YFinanceScrapper('GOTO.JK)
@@ -336,7 +384,43 @@ Note: It is not work in Bank financial statements because different format of fi
      </code> 
 </pre>
 <p><br/>
-Please see the <a href="reference.md">References</a> for further details.</p>
+Please see the <a href="../references/">References</a> for further details.</p>
+<h2 id="about-the-dataframe">About the Dataframe</h2>
+<h3 id="onestate-dataframe">OneState Dataframe</h3>
+<p>One state dataframe is dataframe that represent each statement in financial statement (Income Statement, Balance Sheet, and Cash Flow Statement). The feature of this dataframe is vary depend on company financial statement format in Yahoo Finance. You can get this dataframe in all company that is provided by Yahoo FInance</p>
+<h3 id="keyfeat-dataframe">KeyFeat Dataframe</h3>
+<p>KeyFeat dataframe is dataframe that contain feature combination in each statement. The following are list of features in this dataframe:
+1. Company
+2. Time
+3. Current Assets
+4. Current Liabilities
+5. Inventories
+6. Cash and Cash Equivalent
+7. Total Assets
+8. Total Liabilitites
+9. Shareholder Equity
+10. Operating Cashflow
+11. Gross Profit
+12. Operating Income
+13. Total Revenue
+14. Net Income
+15. Interest Expense
+16. Cost of Good Sold</p>
+<h3 id="metric-dataframe">Metric Dataframe</h3>
+<p>Metric dataframe is dataframe that contain selected financial metrics that are calculated from KeyFeat Dataframe. The following are list of features in this dataframe:
+1. Company
+2. Time
+3. Current Ratio
+4. Acid Test Ratio
+5. Cash Ratio
+6. Operating Cashflow Ratio
+7. Debt Ratio
+8. Return on Asset Ratio
+9. Debt to Equity Ratio
+10. Interest Coverage Ratio
+11. Return on Equity Ratio
+12. Gross Margin Ratio
+13. Operating Margin Ratio</p>
 </article>
 </div>
 </div>
