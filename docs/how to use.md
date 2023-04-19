@@ -99,35 +99,51 @@ One state dataframe is dataframe that represent each statement in financial stat
 
 ### KeyFeat Dataframe
 KeyFeat dataframe is dataframe that contain feature combination in each statement. The following are list of features in this dataframe:
-1. Company
-2. Time
-3. Current Assets
-4. Current Liabilities
-5. Inventories
-6. Cash and Cash Equivalent
-7. Total Assets
-8. Total Liabilitites
-9. Shareholder Equity
-10. Operating Cashflow
-11. Gross Profit
-12. Operating Income
-13. Total Revenue
-14. Net Income
-15. Interest Expense
-16. Cost of Good Sold
+<ol>
+  <li>1. Company</li>
+  <li>2. Time</li>
+  <li>3. Current Assets</li>
+  <li>4. Current Liabilities</li>
+  <li>5. Inventories</li>
+  <li>6. Cash and Cash Equivalent</li>
+  <li>7. Total Assets</li>
+  <li>8. Total Liabilitites</li>
+  <li>9. Shareholder Equity</li>
+  <li>10. Operating Cashflow</li>
+  <li>11. Gross Profit</li>
+  <li>12. Operating Income</li>
+  <li>13. Total Revenue</li>
+  <li>14. Net Income</li>
+  <li>15. Interest Expense</li>
+  <li>16. Cost of Good Sold</li>
+</ol>
+
 
 ### Metric Dataframe
 Metric dataframe is dataframe that contain selected financial metrics that are calculated from KeyFeat Dataframe. The following are list of features in this dataframe:
-1. Company
-2. Time
-3. Current Ratio
-4. Acid Test Ratio
-5. Cash Ratio
-6. Operating Cashflow Ratio
-7. Debt Ratio
-8. Return on Asset Ratio
-9. Debt to Equity Ratio
-10. Interest Coverage Ratio
-11. Return on Equity Ratio
-12. Gross Margin Ratio
-13. Operating Margin Ratio
+<ol>
+  <li>1. Company</li>
+  <li>2. Time</li>
+  <li>3. Current Ratio</li>
+  <li>4. Acid Test Ratio</li>
+  <li>5. Cash Ratio</li>
+  <li>6. Operating Cashflow Ratio</li>
+  <li>7. Debt Ratio</li>
+  <li>8. Return on Asset Ratio</li>
+  <li>9. Debt to Equity Ratio</li>
+  <li>10. Interest Coverage Ratio</li>
+  <li>11. Return on Equity Ratio</li>
+  <li>12. Gross Margin Ratio</li>
+  <li>13. Operating Margin Ratio</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+

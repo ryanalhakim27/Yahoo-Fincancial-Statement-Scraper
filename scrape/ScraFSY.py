@@ -2,7 +2,7 @@
  
 This module is used for scrape financial statement data from Yahoo Finance.
 In one session, you can only scrape financial statement data from one company.
-The data consist of balance sheet, income statement, and cashflow data. 
+The data consist of balance sheet, income statement, and cashflow statement. 
 Those are tabulated for each statement. You can also get one table that contain
 selected features from each statement, and one table that contain selected
 financial metrics from the selected features.
@@ -365,15 +365,17 @@ class YFinanceScrapper():
             important_header=['time','company','current_assets','current_liabilities',
                             'inventories','cash&cashequiv','total_assets',
                             'total_liabilities','shareholder_equity',
-                            'operating_cashflow','gross_profit',
+                            'operating_cashflow','gross_profit','investing_cashflow',
+                            'financing_cashflow','end_cash',
                             'operating_income','total_revenue','net_income',
-                            'interest_expense','cost_of_good_sold']
+                            'interest_expense','cost_of_good_sold','EBIT','EPS','EBITDA']
             int_header=['current_assets','current_liabilities',
                         'inventories','cash&cashequiv','total_assets',
                         'total_liabilities','shareholder_equity',
-                        'operating_cashflow','gross_profit',
+                        'operating_cashflow','investing_cashflow',
+                        'gross_profit','financing_cashflow','end_cash',
                         'operating_income','total_revenue','net_income',
-                        'interest_expense','cost_of_good_sold']
+                        'interest_expense','cost_of_good_sold','EBIT','EPS','EBITDA']
             df=pd.DataFrame(None, columns=important_header)
             df['time']=self.income_statement.get('Time')
             df['company']=self.income_statement.get('Company')
@@ -385,12 +387,18 @@ class YFinanceScrapper():
             df['total_liabilities']=self.balance_sheet.get('Total Liabilities Net Minority Interest')
             df['shareholder_equity']=self.balance_sheet.get("Stockholders' Equity")
             df['operating_cashflow']=self.cash_flow.iloc[:,2]
+            df['investing_cashflow']=self.cash_flow.get('Investing Cash Flow')
+            df['financing_cashflow']=self.cash_flow.get('Financing Cash Flow')
+            df['end_cash']=self.cash_flow.get('End Cash Position')
             df['gross_profit']=self.income_statement.get('Gross Profit')
             df['operating_income']=self.income_statement.get('Operating Income')
             df['total_revenue']=self.income_statement.get('Total Revenue')
             df['interest_expense']=self.income_statement.get('Interest Expense')
             df['net_income']=self.income_statement.get('Net Income')
             df['cost_of_good_sold']=self.income_statement.get('Cost of Revenue')
+            df['EBIT']=self.income_statement.get('EBIT')
+            df['EPS']=self.income_statement.get('Basic EPS')
+            df['EBITDA']=self.income_statement.get('Normalized EBITDA')
             df=df.dropna()
             df[int_header]=df[int_header].astype(np.int64)
             self.imp_dataframe = df
@@ -416,7 +424,7 @@ class YFinanceScrapper():
             metric (pandas.Dataframe): A pandas Dataframe that contain
                 selected financial metrics from selected features.
         '''
-        metric_header=['time','company','current_ratio','acidtest_ratio',
+        metric_header=['time','company','net_profit_margin','current_ratio','acidtest_ratio',
                           'cash_ratio','operating_cash_flow_ratio','debt_ratio',
                           'return_on_asset_ratio','debt_to_equity_ratio',
                           'interest_coverage_ratio','return_on_equity_ratio',
@@ -424,13 +432,14 @@ class YFinanceScrapper():
         df=pd.DataFrame(None, columns=metric_header)
         df['time']=self.imp_dataframe.get('time')
         df['company']=self.imp_dataframe.get('company')
+        df['net_profit_margin']=self.imp_dataframe.get('net_income')/self.imp_dataframe.get('total_revenue')
         df['current_ratio']=self.imp_dataframe.get('current_assets')/self.imp_dataframe.get('current_liabilities')
         df['acidtest_ratio']=(self.imp_dataframe.get('current_assets')-self.imp_dataframe.get('inventories'))/self.imp_dataframe.get('current_liabilities')
         df['cash_ratio']=self.imp_dataframe.get('cash&cashequiv')/self.imp_dataframe.get('current_liabilities')
         df['operating_cash_flow_ratio']=self.imp_dataframe.get('operating_cashflow')/self.imp_dataframe.get('current_liabilities')
         df['debt_ratio']=self.imp_dataframe.get('total_liabilities')/self.imp_dataframe.get('total_assets')
         df['debt_to_equity_ratio']=self.imp_dataframe.get('total_liabilities')/self.imp_dataframe.get('shareholder_equity')
-        df['interest_coverage_ratio']=self.imp_dataframe.get('operating_income')/self.imp_dataframe.get('interest_expense')
+        df['interest_coverage_ratio']=self.imp_dataframe.get('EBIT')/self.imp_dataframe.get('interest_expense')
         df['gross_margin_ratio']=self.imp_dataframe.get('gross_profit')/self.imp_dataframe.get('total_revenue')
         df['operating_margin_ratio']=self.imp_dataframe.get('operating_income')/self.imp_dataframe.get('total_revenue')
         df['return_on_asset_ratio']=self.imp_dataframe.get('net_income')/self.imp_dataframe.get('total_assets')
