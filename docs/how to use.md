@@ -31,7 +31,7 @@ You must instance a Scrape Session Object in each scrape session.
     <br>aali = YFinanceScrapper('AALI.JK) </code> 
 </pre>
 There are 3 session of scrape.
-<br>Notes: Before you start to collect data, make sure you already defined your path location of your ChromeDriver in attribute path.
+<br><br>Notes: Before you start to collect data, make sure you already defined your path location of your ChromeDriver in attribute path.
 <h4>For example:</h4>
 <pre>
     <code>bca = YFinanceScrapper('BBCA.JK) 
@@ -109,46 +109,46 @@ One state dataframe is dataframe that represent each statement in financial stat
 ### KeyFeat Dataframe
 KeyFeat dataframe is dataframe that contain feature combination in each statement. The following are list of features in this dataframe:
 <ol>
-  <li>1. Company</li>
-  <li>2. Time</li>
-  <li>3. Current Assets</li>
-  <li>4. Current Liabilities</li>
-  <li>5. Inventories</li>
-  <li>6. Cash and Cash Equivalent</li>
-  <li>7. Total Assets</li>
-  <li>8. Total Liabilitites</li>
-  <li>9. Shareholder Equity</li>
-  <li>10. Operating Cashflow</li>
-  <li>11. Investing Cashflow</li>
-  <li>12. Financing Cashflow</li>
-  <li>13. End Cash </li>
-  <li>14. Gross Profit</li>
-  <li>15. Operating Income</li>
-  <li>16. Total Revenue</li>
-  <li>17. Net Income</li>
-  <li>18. Interest Expense</li>
-  <li>19. Cost of Good Sold</li>
-  <li>20. EBIT </li>
-  <li>21. EPS </li>
-  <li>22. EBITDA </li>
+  <li>Company</li>
+  <li>Time</li>
+  <li>Current Assets</li>
+  <li>Current Liabilities</li>
+  <li>Inventories</li>
+  <li>Cash and Cash Equivalent</li>
+  <li>Total Assets</li>
+  <li>Total Liabilitites</li>
+  <li>Shareholder Equity</li>
+  <li>Operating Cashflow</li>
+  <li>Investing Cashflow</li>
+  <li>Financing Cashflow</li>
+  <li>End Cash </li>
+  <li>ross Profit</li>
+  <li>Operating Income</li>
+  <li>Total Revenue</li>
+  <li>Net Income</li>
+  <li>Interest Expense</li>
+  <li>Cost of Good Sold</li>
+  <li>EBIT </li>
+  <li>EPS </li>
+  <li>EBITDA </li>
 </ol>
 
 ### Metric Dataframe
 Metric dataframe is dataframe that contain selected financial metrics that are calculated from KeyFeat Dataframe. The following are list of features in this dataframe:
 <ol>
-  <li>1. Company</li>
-  <li>2. Time</li>
-  <li>3. Current Ratio</li>
-  <li>4. Acid Test Ratio</li>
-  <li>5. Cash Ratio</li>
-  <li>6. Operating Cashflow Ratio</li>
-  <li>7. Debt Ratio</li>
-  <li>8. Return on Asset Ratio</li>
-  <li>9. Debt to Equity Ratio</li>
-  <li>10. Interest Coverage Ratio</li>
-  <li>11. Return on Equity Ratio</li>
-  <li>12. Gross Margin Ratio</li>
-  <li>13. Operating Margin Ratio</li>
+  <li>Company</li>
+  <li>Time</li>
+  <li>Current Ratio</li>
+  <li>Acid Test Ratio</li>
+  <li>Cash Ratio</li>
+  <li>Operating Cashflow Ratio</li>
+  <li>Debt Ratio</li>
+  <li>Return on Asset Ratio</li>
+  <li>Debt to Equity Ratio</li>
+  <li>Interest Coverage Ratio</li>
+  <li>Return on Equity Ratio</li>
+  <li>Gross Margin Ratio</li>
+  <li>Operating Margin Ratio</li>
 </ol>
 
 
