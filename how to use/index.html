@@ -130,6 +130,11 @@
 <nav aria-label="Before the Scrape" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#install-chromedriver">
+    Install ChromeDriver
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#install-required-library">
     Install Required Library
   </a>
@@ -229,6 +234,11 @@
 <nav aria-label="Before the Scrape" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#install-chromedriver">
+    Install ChromeDriver
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#install-required-library">
     Install Required Library
   </a>
@@ -308,6 +318,8 @@
 <article class="md-content__inner md-typeset">
 <h1 id="guide-to-use-scrafsy">Guide to Use ScraFSY</h1>
 <h2 id="before-the-scrape">Before the Scrape</h2>
+<h3 id="install-chromedriver">Install ChromeDriver</h3>
+<p>This module require chrome driver for web-crawling. Make sure you have alreadu installed chromedriver and note the location of your ChromeDriver in your PC.</p>
 <h3 id="install-required-library">Install Required Library</h3>
 <p>This module require some library such as BeautifulSoup4, Selenium, time, Pandas, and Numpy.
 <br/>1. BeautifulSoup4 is used for parse HTML from Yahoo Finance. This parse process is needed to collect the important information from the HTML file. 
@@ -328,7 +340,14 @@
     <br/>bmri = YFinanceScrapper('BMRI.JK) 
     <br/>aali = YFinanceScrapper('AALI.JK) </code> 
 </pre>
-<p>There are 3 session of scrape.</p>
+<p>There are 3 session of scrape.
+<br/>Notes: Before you start to collect data, make sure you already defined your path location of your ChromeDriver in attribute path.</p>
+<h4>For example:</h4>
+<pre>
+    <code>bca = YFinanceScrapper('BBCA.JK) 
+    <br/>bca.path = '/usr/local/bin/chromedriver'
+     </code> 
+</pre>
 <h3 id="2-get-onestate-dataframe">2. Get OneState Dataframe</h3>
 <p>There are two option in way to getting OneState Dataframe.
 You can get all 3 separated financial statement dataframe in one function using <code>get_alldata()</code> or get one statement dataframe using <code>get_finance_data(statement)</code>.</p>
@@ -389,38 +408,48 @@ Please see the <a href="../references/">References</a> for further details.</p>
 <h3 id="onestate-dataframe">OneState Dataframe</h3>
 <p>One state dataframe is dataframe that represent each statement in financial statement (Income Statement, Balance Sheet, and Cash Flow Statement). The feature of this dataframe is vary depend on company financial statement format in Yahoo Finance. You can get this dataframe in all company that is provided by Yahoo FInance</p>
 <h3 id="keyfeat-dataframe">KeyFeat Dataframe</h3>
-<p>KeyFeat dataframe is dataframe that contain feature combination in each statement. The following are list of features in this dataframe:
-1. Company
-2. Time
-3. Current Assets
-4. Current Liabilities
-5. Inventories
-6. Cash and Cash Equivalent
-7. Total Assets
-8. Total Liabilitites
-9. Shareholder Equity
-10. Operating Cashflow
-11. Gross Profit
-12. Operating Income
-13. Total Revenue
-14. Net Income
-15. Interest Expense
-16. Cost of Good Sold</p>
+<p>KeyFeat dataframe is dataframe that contain feature combination in each statement. The following are list of features in this dataframe:</p>
+<ol>
+<li>1. Company</li>
+<li>2. Time</li>
+<li>3. Current Assets</li>
+<li>4. Current Liabilities</li>
+<li>5. Inventories</li>
+<li>6. Cash and Cash Equivalent</li>
+<li>7. Total Assets</li>
+<li>8. Total Liabilitites</li>
+<li>9. Shareholder Equity</li>
+<li>10. Operating Cashflow</li>
+<li>11. Investing Cashflow</li>
+<li>12. Financing Cashflow</li>
+<li>13. End Cash </li>
+<li>14. Gross Profit</li>
+<li>15. Operating Income</li>
+<li>16. Total Revenue</li>
+<li>17. Net Income</li>
+<li>18. Interest Expense</li>
+<li>19. Cost of Good Sold</li>
+<li>20. EBIT </li>
+<li>21. EPS </li>
+<li>22. EBITDA </li>
+</ol>
 <h3 id="metric-dataframe">Metric Dataframe</h3>
-<p>Metric dataframe is dataframe that contain selected financial metrics that are calculated from KeyFeat Dataframe. The following are list of features in this dataframe:
-1. Company
-2. Time
-3. Current Ratio
-4. Acid Test Ratio
-5. Cash Ratio
-6. Operating Cashflow Ratio
-7. Debt Ratio
-8. Return on Asset Ratio
-9. Debt to Equity Ratio
-10. Interest Coverage Ratio
-11. Return on Equity Ratio
-12. Gross Margin Ratio
-13. Operating Margin Ratio</p>
+<p>Metric dataframe is dataframe that contain selected financial metrics that are calculated from KeyFeat Dataframe. The following are list of features in this dataframe:</p>
+<ol>
+<li>1. Company</li>
+<li>2. Time</li>
+<li>3. Current Ratio</li>
+<li>4. Acid Test Ratio</li>
+<li>5. Cash Ratio</li>
+<li>6. Operating Cashflow Ratio</li>
+<li>7. Debt Ratio</li>
+<li>8. Return on Asset Ratio</li>
+<li>9. Debt to Equity Ratio</li>
+<li>10. Interest Coverage Ratio</li>
+<li>11. Return on Equity Ratio</li>
+<li>12. Gross Margin Ratio</li>
+<li>13. Operating Margin Ratio</li>
+</ol>
 </article>
 </div>
 </div>
