@@ -1,6 +1,8 @@
 # Guide to Use ScraFSY
 
 ## Before the Scrape
+### Install ChromeDriver
+This module require chrome driver for web-crawling. Make sure you have alreadu installed chromedriver and note the location of your ChromeDriver in your PC.
 
 ### Install Required Library
 
@@ -29,6 +31,13 @@ You must instance a Scrape Session Object in each scrape session.
     <br>aali = YFinanceScrapper('AALI.JK) </code> 
 </pre>
 There are 3 session of scrape.
+<br>Notes: Before you start to collect data, make sure you already defined your path location of your ChromeDriver in attribute path.
+<h4>For example:</h4>
+<pre>
+    <code>bca = YFinanceScrapper('BBCA.JK) 
+    <br>bca.path = '/usr/local/bin/chromedriver'
+     </code> 
+</pre>
 
 ### 2. Get OneState Dataframe 
 There are two option in way to getting OneState Dataframe.
@@ -110,14 +119,19 @@ KeyFeat dataframe is dataframe that contain feature combination in each statemen
   <li>8. Total Liabilitites</li>
   <li>9. Shareholder Equity</li>
   <li>10. Operating Cashflow</li>
-  <li>11. Gross Profit</li>
-  <li>12. Operating Income</li>
-  <li>13. Total Revenue</li>
-  <li>14. Net Income</li>
-  <li>15. Interest Expense</li>
-  <li>16. Cost of Good Sold</li>
+  <li>11. Investing Cashflow</li>
+  <li>12. Financing Cashflow</li>
+  <li>13. End Cash </li>
+  <li>14. Gross Profit</li>
+  <li>15. Operating Income</li>
+  <li>16. Total Revenue</li>
+  <li>17. Net Income</li>
+  <li>18. Interest Expense</li>
+  <li>19. Cost of Good Sold</li>
+  <li>20. EBIT </li>
+  <li>21. EPS </li>
+  <li>22. EBITDA </li>
 </ol>
-
 
 ### Metric Dataframe
 Metric dataframe is dataframe that contain selected financial metrics that are calculated from KeyFeat Dataframe. The following are list of features in this dataframe:

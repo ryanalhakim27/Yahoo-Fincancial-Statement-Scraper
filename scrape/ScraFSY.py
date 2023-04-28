@@ -86,7 +86,7 @@ class YFinanceScrapper():
             'Cash Flow' : 'https://finance.yahoo.com/quote/'
                 +self.company_code+'/cash-flow?p='+self.company_code
         }
-            
+      
     #Function for get html data  
     def get_html_data(self, statement):
         '''Retrieve a Beautifulsoup object that contains JSON file from Yahoo Finance.
@@ -305,22 +305,33 @@ class YFinanceScrapper():
             self.get_finance_data(statement=statement)
             self.reset_data()
 
-    def convert_to_csv(self,table):
+    def convert_to_csv(self,name_of_table):
         '''Convert selected statements table to csv.
 
         Examples:
             >>> bca = YFinanceScrapper('BBCA.JK')
             >>> df= bca.get_finance_data('Income Statement')
-            >>> bca.convert_to_csv(self.income_statement)
+            >>> bca.convert_to_csv(income_statement)
 
         Args:
-            table (pandas.Dataframe): Selected dataframe.
+            name_of_table (str): Name of table.
 
         Returns:
             csv file of selected dataframe.
 
         '''
-        self.table.to_csv(f'/csv_files/{self.company_code}_{table}.csv')
+        if name_of_table == 'income_statement':
+            self.income_statement.to_csv(f'csv_files/{self.company_code}_{name_of_table}.csv')
+        elif name_of_table == "balance_sheet":
+            self.balance_sheet.to_csv(f'csv_files/{self.company_code}_{name_of_table}.csv')
+        elif name_of_table == "cash_flow":
+            self.cash_flow.to_csv(f'csv_files/{self.company_code}_{name_of_table}.csv')
+        elif name_of_table == "imp_dataframe":
+            self.imp_dataframe.to_csv(f'csv_files/{self.company_code}_{name_of_table}.csv')
+        elif name_of_table == "metric":
+            self.metric.to_csv(f'csv_files/{self.company_code}_{name_of_table}.csv')
+        else:
+            print('your input is false')
 
     def value_to_num(self,x):
         '''Data manipulation that convert '-' to nan, convert ',' to '',
@@ -369,13 +380,6 @@ class YFinanceScrapper():
                             'financing_cashflow','end_cash',
                             'operating_income','total_revenue','net_income',
                             'interest_expense','cost_of_good_sold','EBIT','EPS','EBITDA']
-            int_header=['current_assets','current_liabilities',
-                        'inventories','cash&cashequiv','total_assets',
-                        'total_liabilities','shareholder_equity',
-                        'operating_cashflow','investing_cashflow',
-                        'gross_profit','financing_cashflow','end_cash',
-                        'operating_income','total_revenue','net_income',
-                        'interest_expense','cost_of_good_sold','EBIT','EPS','EBITDA']
             df=pd.DataFrame(None, columns=important_header)
             df['time']=self.income_statement.get('Time')
             df['company']=self.income_statement.get('Company')
@@ -399,8 +403,6 @@ class YFinanceScrapper():
             df['EBIT']=self.income_statement.get('EBIT')
             df['EPS']=self.income_statement.get('Basic EPS')
             df['EBITDA']=self.income_statement.get('Normalized EBITDA')
-            df=df.dropna()
-            df[int_header]=df[int_header].astype(np.int64)
             self.imp_dataframe = df
             return self.imp_dataframe
         except(KeyError):
@@ -430,8 +432,8 @@ class YFinanceScrapper():
                           'interest_coverage_ratio','return_on_equity_ratio',
                           'gross_margin_ratio','operating_margin_ratio']
         df=pd.DataFrame(None, columns=metric_header)
-        df['time']=self.imp_dataframe.get('time')
-        df['company']=self.imp_dataframe.get('company')
+        df['time']=self.income_statement.get('Time')
+        df['company']=self.income_statement.get('Company')
         df['net_profit_margin']=self.imp_dataframe.get('net_income')/self.imp_dataframe.get('total_revenue')
         df['current_ratio']=self.imp_dataframe.get('current_assets')/self.imp_dataframe.get('current_liabilities')
         df['acidtest_ratio']=(self.imp_dataframe.get('current_assets')-self.imp_dataframe.get('inventories'))/self.imp_dataframe.get('current_liabilities')
@@ -446,20 +448,3 @@ class YFinanceScrapper():
         df['return_on_equity_ratio']=self.imp_dataframe.get('net_income')/self.imp_dataframe.get('shareholder_equity')
         self.metric = df
         return self.metric
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
